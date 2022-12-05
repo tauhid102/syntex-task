@@ -3,7 +3,7 @@ import React from 'react';
 const UserRow = ({user,setReload}) => {
     const {email,role}=user;
     const makeAdmin=()=>{
-        fetch(`http://localhost:5000/user/admin/${email}`,{
+        fetch(`https://syntex-server.up.railway.app/user/admin/${email}`,{
             method:'PUT',
             headers:{
                 'content-type':'application/json'

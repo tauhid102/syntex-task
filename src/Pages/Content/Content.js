@@ -5,7 +5,7 @@ const Content = () => {
     const [pageCount, setPageCount] = useState(0);
     const [page, setPage] = useState(0);
     useEffect(() => {
-        fetch(`http://localhost:5000/content/contentCollection?page=${page}`)
+        fetch(`https://syntex-server.up.railway.app/content/contentCollection?page=${page}`)
           .then((res) => res.json())
           .then((data) => {
             setContents(data.books)

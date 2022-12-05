@@ -25,7 +25,7 @@ const AddContent = () => {
                     paragraph:data.pragraph,
                     img:img
                 }
-                fetch('http://localhost:5000/content',{
+                fetch('https://syntex-server.up.railway.app/content',{
                     method:'POST',
                     headers:{
                         'content-type':'application/json',

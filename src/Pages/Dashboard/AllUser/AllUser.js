@@ -6,7 +6,7 @@ import UserRow from './UserRow';
 const AllUser = () => {
     const [users, setUsers] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/user')
+        fetch('https://syntex-server.up.railway.app/user')
             .then(res => {
                 console.log('status',res);
                 return res.json()})
