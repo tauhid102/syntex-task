@@ -10,6 +10,16 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import AddContent from './Pages/Dashboard/AddContent/AddContent';
 import AllUser from './Pages/Dashboard/AllUser/AllUser';
 import UserProfile from './UserProfile/UserProfile';
+import Canteen from './Pages/Canteen/Canteen';
+import Footer from './Pages/Share/Footer/Footer';
+import Menu from './Pages/Menu/Menu';
+import Breakfast from './Pages/Menu/Breakfast/Breakfast';
+import Lunch from './Pages/Menu/Lunch/Lunch';
+import Drinks from './Pages/Menu/Drinks/Drinks';
+import Desert from './Pages/Menu/Desert/Desert';
+import MyOrder from './Pages/MyOrder/MyOrder';
+import ManageOrder from './Pages/Dashboard/ManageOrder/ManageOrder';
+import ManageFoodIteam from './Pages/Dashboard/ManageFoodIteam/ManageFoodIteam';
 
 function App() {
   return (
@@ -18,12 +28,26 @@ function App() {
       <Routes>
         <Route path='/' element={
         <RequireAuth>
-          <Content></Content>
+          <Canteen></Canteen>
         </RequireAuth>} />
-        <Route path='content' element={
+        <Route path='/myOrder' element={
         <RequireAuth>
-          <Content></Content>
+          <MyOrder></MyOrder>
         </RequireAuth>} />
+        <Route path='canteen' element={
+          <Canteen></Canteen>
+        } />
+        <Route path='menu' element={
+        <RequireAuth>
+          <Menu/>
+        </RequireAuth>}>
+          <Route index element={<Content></Content>}></Route>
+          <Route path='content' element={<Content></Content>}></Route>
+          <Route path='breakfast' element={<Breakfast></Breakfast>}></Route>
+          <Route path='lunch' element={<Lunch></Lunch>}></Route>
+          <Route path='drinks' element={<Drinks></Drinks>}></Route>
+          <Route path='desert' element={<Desert></Desert>}></Route>
+        </Route>
         <Route path='dashboard' element={
         <RequireAuth>
           <Dashboard/>
@@ -31,10 +55,13 @@ function App() {
           <Route index element={<UserProfile></UserProfile>}></Route>
           <Route path='addContent' element={<AddContent></AddContent>}></Route>
           <Route path='allUser' element={<AllUser></AllUser>}></Route>
+          <Route path='manageOrder' element={<ManageOrder></ManageOrder>}></Route>
+          <Route path='manageFood' element={<ManageFoodIteam></ManageFoodIteam>}></Route>
         </Route>
         <Route path='login' element={<Login/>} />
         <Route path='register' element={<Register/>} />
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

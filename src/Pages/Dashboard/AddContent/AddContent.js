@@ -8,6 +8,7 @@ const AddContent = () => {
     const imgeStorageKey='5ecdeb34a2245e0020768cd4e80a6dfb'
 
     const onSubmit = async data => {
+        console.log(data);
         const image=data.image[0];
         const formData=new FormData();
         formData.append('image',image)
@@ -21,11 +22,12 @@ const AddContent = () => {
             if(result.success){
                 const img=result.data.url;
                 const content={
-                    lable:data.lable,
-                    paragraph:data.pragraph,
+                    name:data.name,
+                    price:data.price,
+                    categories:data.categories,
                     img:img
                 }
-                fetch('https://syntex-server.up.railway.app/content',{
+                fetch('http://localhost:5000/content',{
                     method:'POST',
                     headers:{
                         'content-type':'application/json',
@@ -50,16 +52,16 @@ const AddContent = () => {
                         <div>
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="">
-                                    <label for="exampleFormControlInput1" className="form-label">Lable</label>
+                                    <label for="exampleFormControlInput1" className="form-label">Food Name</label>
                                     <input
                                         type="text"
                                         className="form-control"
                                         id="exampleFormControlInput1"
-                                        placeholder="Lable"
-                                        {...register("lable", {
+                                        placeholder="Name"
+                                        {...register("name", {
                                             required: {
                                                 value: true,
-                                                message: 'Lable is Required'
+                                                message: 'Name is Required'
                                             }
                                         })}
                                     />
@@ -68,22 +70,40 @@ const AddContent = () => {
                                     </label>
                                 </div>
                                 <div className="">
-                                    <label for="exampleFormControlInput1" className="form-label">pragraph</label>
+                                    <label for="exampleFormControlInput1" className="form-label">Price</label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         className="form-control"
                                         id="exampleFormControlInput1"
-                                        placeholder="Paragraph"
-                                        {...register("pragraph", {
+                                        placeholder="Price"
+                                        {...register("price", {
                                             required: {
                                                 value: true,
-                                                message: 'Paragraph is Required'
+                                                message: 'Price is Required'
                                             }
                                         })}
                                     />
                                     <label for="exampleFormControlInput1" className="form-label">
                                         {errors.email?.type === 'required' && <p role="alert" className='text-danger'>{errors.email.message}</p>}
                                         {errors.email?.type === 'pattern' && <p role="alert" className='text-danger'>{errors.email.message}</p>}
+                                    </label>
+                                </div>
+                                <div className="">
+                                    <label for="exampleFormControlInput1" className="form-label">Categories</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="exampleFormControlInput1"
+                                        placeholder="Ex: breakfast,lunch,drinks,desert"
+                                        {...register("categories", {
+                                            required: {
+                                                value: true,
+                                                message: 'Categories is Required'
+                                            }
+                                        })}
+                                    />
+                                    <label for="exampleFormControlInput1" className="form-label">
+                                        {errors.categories?.type === 'required' && <p role="alert" className='text-danger'>{errors.categories.message}</p>}
                                     </label>
                                 </div>
                                 <div className="">
@@ -100,7 +120,7 @@ const AddContent = () => {
                                         })}
                                     />
                                     <label for="exampleFormControlInput1" className="form-label">
-                                        {errors.name?.type === 'required' && <p role="alert" className='text-danger'>{errors.name.message}</p>}
+                                        {errors.image?.type === 'required' && <p role="alert" className='text-danger'>{errors.image.message}</p>}
                                     </label>
                                 </div>
                                 <div className='d-grid '>
